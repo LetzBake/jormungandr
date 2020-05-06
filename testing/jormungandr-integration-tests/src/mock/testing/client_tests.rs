@@ -31,7 +31,7 @@ pub fn handshake_sanity() {
     let handshake_response = client.handshake();
 
     assert_eq!(
-        config.genesis_block_hash,
+        *config.genesis_block_hash(),
         hex::encode(handshake_response.get_block0()),
         "Genesis Block"
     );
@@ -107,7 +107,7 @@ pub fn pull_blocks_to_tip_correct_hash() {
     let (server, config) = bootstrap_node();
     let client = Config::attach_to_local_node(config.get_p2p_listen_port()).client();
     let blocks_headers: Vec<Block> = response_to_vec!(
-        client.pull_blocks_to_tip(Hash::from_str(&config.genesis_block_hash).unwrap())
+        client.pull_blocks_to_tip(Hash::from_str(config.genesis_block_hash()).unwrap())
     );
     let blocks_hashes: Vec<Hash> = blocks_headers.iter().map(|x| x.header.hash()).collect();
 
@@ -194,7 +194,7 @@ pub fn push_headers() {
         0u64.into(),
         Epoch(0u32),
         config
-            .block0_configuration
+            .block0_configuration()
             .blockchain_configuration
             .slots_per_epoch
             .into(),
@@ -223,7 +223,7 @@ pub fn upload_block_incompatible_protocol() {
         0u64.into(),
         Epoch(0u32),
         config
-            .block0_configuration
+            .block0_configuration()
             .blockchain_configuration
             .slots_per_epoch
             .into(),
@@ -269,7 +269,7 @@ pub fn upload_block_nonexisting_stake_pool() {
         0u64.into(),
         Epoch(0u32),
         config
-            .block0_configuration
+            .block0_configuration()
             .blockchain_configuration
             .slots_per_epoch
             .into(),
