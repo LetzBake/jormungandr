@@ -1689,6 +1689,7 @@ dependencies = [
  "ed25519-bip32",
  "hex",
  "humantime",
+ "multiaddr",
  "poldercast",
  "quickcheck",
  "rand 0.7.3",
