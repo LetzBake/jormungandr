@@ -1,6 +1,7 @@
 use std::cmp::Ordering;
 use std::num::ParseIntError;
 use std::str::FromStr;
+use std::fmt;
 
 #[derive(Eq, Debug, Clone)]
 pub struct Version {
@@ -46,7 +47,7 @@ impl Ord for Version {
     }
 }
 
-impl Display for Version {
+impl fmt::Display for Version {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "(v{}.{}.{})", self.major, self.minor, self.patch)
     }
