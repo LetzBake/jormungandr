@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
+use std::fmt;
 use std::num::ParseIntError;
 use std::str::FromStr;
-use std::fmt;
 
 #[derive(Eq, Debug, Clone)]
 pub struct Version {
